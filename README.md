@@ -128,4 +128,5 @@ Two workflows with github actions were implemented. They take prepared IAM roles
 * **Configuration parameters** and vurneable data are stored in SSM parameter store
 * **IAM roles** are heavily prefered over using access/ssh keys
 
+*Formatting kindly provided by **Google Gemini***
 
