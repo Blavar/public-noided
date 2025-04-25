@@ -1,6 +1,6 @@
 # Fullstack PERN Forums Demo a.k.a. Noided
 
-This is the codebase for a small fullstack forums application built using the PERN stack and hosted on AWS. Users can create threads, as well as create, edit, and delete their own posts. They also have the ability to upload a profile picture as an avatar.
+This is the codebase for a small fullstack forums application built using the **PERN** stack and hosted on **AWS**. Users can create threads, as well as create, edit, and delete their own posts. They also have the ability to upload a profile picture as an avatar.
 
 **Note:** This is a public version of the code, and some sensitive data has been altered or redacted for security purposes.
 
