@@ -1,7 +1,6 @@
 # Fullstack Forums Demo a.k.a. Noided
 
-This is the codebase for a small fullstack forums app I'be build on PERN stack and hosted on AWS.
-Users can create threads, as well as create new posts, and edit and delete their previous ones. They can also set a picture as an avatar.
+This is the codebase for a small fullstack forums application built using the PERN stack and hosted on AWS. Users can create threads, as well as create, edit, and delete their own posts. They also have the ability to upload a profile picture as an avatar.
 
 **Note:** This is a public version of the code, and some sensitive data has been altered or redacted for security purposes.
 
@@ -93,7 +92,7 @@ Two workflows with github actions were implemented. They take prepared IAM roles
 * **Backend:** Takes the repo, dockerizes it, pushes the image to ECR, then deploys it to an EC2 instance with SSM and runs it.
 * **Frontend:** Takes the repo, builds it, pushes to S3 bucket.
 
-## AWS Infrastructure
+## AWS/Hosting
 
 * **ECR:** Used solely to store an image of the Node-Express backend.
 * **EC2:** Holds the container running the backend. Has a Cloudflare origin certificate installed, which is mounted onto the image. Has an IAM role which provides minimal permissions for interactions with SSM and S3. Security group provides minimal neccesary rules for inbound https trafiic and communication with RDS.
@@ -101,6 +100,8 @@ Two workflows with github actions were implemented. They take prepared IAM roles
 * **S3:**  Used to serve the React frotnend statically, as well as storing and serving avatars.
 * **SSM:** Specifically Parameter Store is used for storing and retrieving configuration, as well as confidential data: keys, connection string, data limits, certificates, etc.
 
+* **Cloudflare:** Root of a Cloudflare domain is pointing to the S3 endpoint, while a api-designated subdomain is pointing to EC2 instance's endpoint.
+  
 ---
 
 ## SECURITY
