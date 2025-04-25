@@ -4,16 +4,18 @@ This is only a public version of the code, which predictably means that some dat
 for security reasons. Most notably frotnend/.env.production was ommited, and imports of aws adapters were
 commneted out due to slight complications.
 
+**Note:** This is a public version of the code, and some sensitive data has been altered or redacted for security purposes.
 
-Technologies used:
-    node express 
-    react vite
-    postgres drizzle
-    JWT
-    Cloudflare
-    github github actions
-    docker
-    AWS: EC2, ECR, RDS, S3, SSM, IAM
+## Technologies Used:
+
+* **Backend:** Node.js, Express.js
+* **Frontend:** React, Vite
+* **Database:** PostgreSQL, Drizzle ORM
+* **Authentication:** JWT
+* **Security:** Cloudflare
+* **DevOps:** GitHub Actions, Docker
+* **Cloud Hosting:** AWS (EC2, ECR, RDS, S3, SSM, IAM)
+
 
 
 FRONTEND
@@ -55,40 +57,38 @@ Room for improvement:
 
 
 
-BACKEND
+## Backend
 
-Technologies:
-    node, express
-    drizzle ORM - database interaction
-    drizzle kit - database migrations
-    JWT - authentication
-    aws sdk v3 - integration with aws servies
-    axios
-    cors
+**Technologies:**
 
-    DEV: nodemon, .env
+* Node.js, Express.js
+* Drizzle ORM - Database Interaction
+* Drizzle Kit - Database Migrations
+* JWT - Authentication
+* aws-sdk v3 - Integration with AWS Services
+* Axios
+* CORS
+* **Dev:** Nodemon, .env
 
 
-database/drizzle schemas: Users, Posts, Threads
+**Database/Drizzle schemas:** Users, Posts, Threads
 
-The backend's structure rests on main division into Middleware, Controllers and Repositories ( later referred to as layers ).
-Repositories are responsible for interaction with the database through drizzle ORM. This name was chosen in order to highlight their narrow and precise scope.
-Controllers merge the traditional responsibilites of controllers and services. This was a deliberate choice, as due to the app's small scope,
+The backend's structure rests on main division into **Middleware**, **Controllers** and **Repositories** ( later referred to as layers ).
+**Repositories** are responsible for interaction with the database through drizzle ORM. This name was chosen in order to highlight their narrow and precise scope.
+**Controllers** merge the traditional responsibilites of controllers and services. This was a deliberate choice, as due to the app's small scope,
 a clear distinction would result in nothing short of boilerplate. It can be argued though, that the app in its final state was nearing necesitating such a distinction.
 
 
-Notable parts:
-    RepoBuilder: Given a drizzle Schema, generates a set of boilerplate CRUD functions, which can be attached to a specific Repo in bulk or selectively.
-    Errors: A .json file with error type configuration is used by a small templating engine to create error type templates, which in turn are used to create constructors for the custom error types.
-    index.js is then build by a script, for convenient importing of said error types.
-    Error Wrappers: Each layer is wrapped with a designated error wrapper, which intercepts thrown errors and augments them with context data, as in which Middleware, Controller or Repo they were thrown in
-    config: Proxy, with set method containing a param fetching function specific to the current enviroment. Using a Proxy provided not only a nice abstraction, but also effectively created a virtual object, with parameters being accesible by convenient dot syntax.
-    platform: Folder which exports implementations of specific functions based on the current enviroment either, in development these functions rely on the .env and the file system,
-    in production, these are adapters to S3, SSM and RDS relying on AWS SDK.
-    AvatarController.UpdateAvatar: In production it performs cache purging of updated avatars on Cloudflare.
+**Notable parts:**
+* **RepoBuilder:** Given a Drizzle Schema, generates a set of boilerplate CRUD functions, which can be attached to a specific Repo in bulk or selectively.
+* **Errors:** A .json file with error type configuration is used by a small templating engine to create error type templates, which in turn are used to create constructors for the custom error types. index.js is then build by a script, for convenient importing of said error types.
+* **Error Wrappers:** Each layer is wrapped with a designated error wrapper, which intercepts thrown errors and augments them with context data, as in which Middleware, Controller or Repo they were thrown in
+* **config:** Proxy, with set method containing a param fetching function specific to the current enviroment. Using a Proxy provided not only a nice abstraction, but also effectively created a virtual object, with parameters being accesible by convenient dot syntax.
+* **platform:** Folder which exports implementations of specific functions based on the current enviroment either, in development these functions rely on the .env and the file system, in production, these are adapters to S3, SSM and RDS relying on AWS SDK.
+* **AvatarController.UpdateAvatar:** In production it performs cache purging of updated avatars on Cloudflare.
 
 
-##Room for improvement:
+**Room for improvement:**
 * The configuration step, which involves building error types, their index, platform providing specific functions, could've been more organized and centralized. Although it didn't generate any erros, a more refined approach would've been not only less error prone, but also far more readable.
 * Though after general user authentication, resources (posts and avatars) are also verified for ownership and then validated, current implementation simply isn't done in a scalable way. First improvement is using express-validator. Second: schema for specific objects could have an "owner" field. Then general information about schemas would be accesible to middleware and controllers so that a middleware could automatically decide which resources send with PUT or DELETE requests are to be checked.
 * The above opens the door for a more involved authorization system as well. Right now, only the admin has additional privileges, and the checks are implemented ad hoc. With resource ownership actually being part of the larger system, priviliges could also be defined for user roles, all of which could be checked in one Auhtorization middleware.
@@ -106,13 +106,11 @@ Two workflows with github actions were implemented. They take prepared IAM roles
 
 ## AWS Infrastructure
 
-ECR: Used solely to store an image of the node-express backend.
-EC2: Holds the container running the backend. Has a Cloudflare origin certificate installed, which is mounted onto the image. Has an IAM role
-     which provides minimal permissions for interactions with SSM and S3. Security group provides minimal neccesary rules for inbound https trafiic
-     and communication with RDS.
-RDS: Runs a postgres database. Due to small scale of the app, schemas and data could be pushes by a locally executed script using Drizzle ORM and kit.
-S3:  Used to serve the react frotnend statically, as well as storing and serving avatars.
-SSM: Specifically parameter store is used for storing and retrieving configuration as well as confidential data: keys, connection string, data limits, certificates, etc.
+* **ECR:** Used solely to store an image of the Node-Express backend.
+* **EC2:** Holds the container running the backend. Has a Cloudflare origin certificate installed, which is mounted onto the image. Has an IAM role which provides minimal permissions for interactions with SSM and S3. Security group provides minimal neccesary rules for inbound https trafiic and communication with RDS.
+* **RDS:** Runs a postgres database. Due to small scale of the app, schemas and data could be pushes by a locally executed script using Drizzle ORM and Kit.
+* **S3:**  Used to serve the React frotnend statically, as well as storing and serving avatars.
+* **SSM:** Specifically Parameter Store is used for storing and retrieving configuration, as well as confidential data: keys, connection string, data limits, certificates, etc.
 
 
 
