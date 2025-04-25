@@ -1,8 +1,7 @@
-This is code for a small fullstack forums app I'be build on PERN stack and hosted on AWS.
+# Fullstack Forums Demo a.k.a. Noided
+
+This is the codebase for a small fullstack forums app I'be build on PERN stack and hosted on AWS.
 Users can create threads, as well as create new posts, and edit and delete their previous ones. They can also set a picture as an avatar.
-This is only a public version of the code, which predictably means that some data was altered/redacted
-for security reasons. Most notably frotnend/.env.production was ommited, and imports of aws adapters were
-commneted out due to slight complications.
 
 **Note:** This is a public version of the code, and some sensitive data has been altered or redacted for security purposes.
 
@@ -24,25 +23,21 @@ commneted out due to slight complications.
 * React, Cloudflare turnstile, axios
 * DEV: Vite, .env
 
-
-The React frontend was build with a DRY principle in mind, starting off from small, reusable, reactive components, and building up from them.
-I tried to make JSX components as 'dumb' as possible, meaning they only take care of how inner parts look and how they respond to change. 
-The specific feedback they show is given to them, and the backend communication is usually handled by context providers.
-Much effort was dedicated to creating instant and intuitive feedback to the user's actions, either through animation or error messages.
-Subtle css animations were also used in specifci places, in order to make the app look alive, but not to overwhelm the user.
-
+The React frontend was build with a DRY principle in mind, starting off from small, reusable, reactive components, and building up from them. I tried to make JSX components as 'dumb' as possible, meaning they only take care of how inner parts look and how they respond to change. The specific feedback they show is given to them, and the backend communication is usually handled by context providers. Much effort was dedicated to creating instant and intuitive feedback to the user's actions, either through animation or error messages. Subtle css animations were also used in specifci places, in order to make the app look alive, but not to overwhelm the user.
 
 **Notable parts:**
+
 * **Button (variations):** Adjusts its appearance based on the state it keeps track of internally. Exposes a state setter through an injected ref.
-* **Crop:** Custom image cropper. Uses canvases and refs to highlight a portion of the uploaded image to be send to the backend as a new avatar. 
-* **UpdateAvatarProvider:** Context handling requests about updating user's avatar and notifying interested components about the result through subsribed callbacks or an update key state.
-* **ThreadProvider:** Context handling requests to the server about CRUD operations on posts within one thread, and based on the response managing data and feedback being shown on the thread page
-* **UserProvider:**  Context handling storage and infromation about the currently logges user. Used to dynamically render the UI.
+* **Crop:** Custom image cropper. Uses canvases and refs to highlight a portion of the uploaded image to be send to the backend as the new avatar. 
+* **UpdateAvatarProvider:** Context Provider handling requests about updating user's avatar and notifying interested components about the result through subsribed callbacks or an update key state.
+* **ThreadProvider:** Context Provider handling requests to the server about CRUD operations on posts within one thread, and based on the response managing data and feedback being shown on the thread page
+* **UserProvider:**  Context Provider handling storage and infromation about the currently logges user. Used to dynamically render the UI.
 * **api:** Object wrapped around an axios instance, streamlining api requests, error handling and providing ui feedback messages to components.
-* **AdminPanel:** small component allowing the admin to change between currently logged users. Mainly used to populate the app, although with small enhacements could be used as a moderating tool.
-* **PostFactory:** takes a set of parameters as props, and based on them renders or doesn't render things like an EditButton, a DeleteButton, an Editable (input field), etc.
+* **AdminPanel:** Small component allowing the admin to change between currently logged users. Mainly used to populate the app, although with small enhacements could be used as a moderating tool.
+* **PostFactory:** Takes a set of parameters as props, and based on them renders or doesn't render things like an EditButton, a DeleteButton, an Editable (input field), etc.
 
 **Room for improvement:**
+
 * Parents injecting refs to children, which then set ref.current to an internal setter proved to be error prone, generating hanginf refs. useImperativeHandle could've been used to mitigate this as well as to make the functionality more familiar and readable in a larger codebase.
 * The Button component's implementation, especially with relation to css styling, could be made more organized, streamlined and maitainable. It works in the current form, but towards the end of development it became abundantly clear that current implementation doesn't provide a flexible and scalable enough solution.
 * Implementation of callback subscriptions proved to be error prone, especially when said callbacks included refs to currently mounted components. I'll be experimenting with either a more general and robust interface for said functionality, or a way to handle this functionality in an alltogether different way, like updateKeys states that the interested component uses as dependencies in useEffect.
@@ -64,7 +59,6 @@ Subtle css animations were also used in specifci places, in order to make the ap
 * CORS
 * **Dev:** Nodemon, .env
 
-
 **Database/Drizzle schemas:** Users, Posts, Threads
 
 The backend's structure rests on main division into **Middleware**, **Controllers** and **Repositories** ( later referred to as layers ).
@@ -72,8 +66,8 @@ The backend's structure rests on main division into **Middleware**, **Controller
 **Controllers** merge the traditional responsibilites of controllers and services. This was a deliberate choice, as due to the app's small scope,
 a clear distinction would result in nothing short of boilerplate. It can be argued though, that the app in its final state was nearing necesitating such a distinction.
 
-
 **Notable parts:**
+
 * **RepoBuilder:** Given a Drizzle Schema, generates a set of boilerplate CRUD functions, which can be attached to a specific Repo in bulk or selectively.
 * **Errors:** A .json file with error type configuration is used by a small templating engine to create error type templates, which in turn are used to create constructors for the custom error types. index.js is then build by a script, for convenient importing of said error types.
 * **Error Wrappers:** Each layer is wrapped with a designated error wrapper, which intercepts thrown errors and augments them with context data, as in which Middleware, Controller or Repo they were thrown in
@@ -81,8 +75,8 @@ a clear distinction would result in nothing short of boilerplate. It can be argu
 * **platform:** Folder which exports implementations of specific functions based on the current enviroment either, in development these functions rely on the .env and the file system, in production, these are adapters to S3, SSM and RDS relying on AWS SDK.
 * **AvatarController.UpdateAvatar:** In production it performs cache purging of updated avatars on Cloudflare.
 
-
 **Room for improvement:**
+
 * The configuration step, which involves building error types, their index, platform providing specific functions, could've been more organized and centralized. Although it didn't generate any erros, a more refined approach would've been not only less error prone, but also far more readable.
 * Though after general user authentication, resources (posts and avatars) are also verified for ownership and then validated, current implementation simply isn't done in a scalable way. First improvement is using express-validator. Second: schema for specific objects could have an "owner" field. Then general information about schemas would be accesible to middleware and controllers so that a middleware could automatically decide which resources send with PUT or DELETE requests are to be checked.
 * The above opens the door for a more involved authorization system as well. Right now, only the admin has additional privileges, and the checks are implemented ad hoc. With resource ownership actually being part of the larger system, priviliges could also be defined for user roles, all of which could be checked in one Auhtorization middleware.
@@ -94,6 +88,7 @@ a clear distinction would result in nothing short of boilerplate. It can be argu
 ---
 
 ## CI/CD
+
 Two workflows with github actions were implemented. They take prepared IAM roles in order to streamline the whole process.
 * **Backend:** Takes the repo, dockerizes it, pushes the image to ECR, then deploys it to an EC2 instance with SSM and runs it.
 * **Frontend:** Takes the repo, builds it, pushes to S3 bucket.
@@ -109,7 +104,8 @@ Two workflows with github actions were implemented. They take prepared IAM roles
 ---
 
 ## SECURITY
-* **CORS** on the backend only allows for request form the frontend url
+
+* **CORS** on the backend only allows request from the frontend url
 * **Data limit** of 1MB imposed on received data
 * **Rate limiter** 
 * **Authentication** using JWT
