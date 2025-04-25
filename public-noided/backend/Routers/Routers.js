@@ -11,7 +11,8 @@ const publicRouter  = express.Router();
 const apiRouter     = express.Router();
 
 
-
+//This is the local development version of the code
+//in production, the following two lines are non-existent, as S3 serves the static files
 publicRouter.use( '/avatars', AvatarController.CheckAvatar )
 publicRouter.use( '/avatars', express.static( config.__avatars ));
 
