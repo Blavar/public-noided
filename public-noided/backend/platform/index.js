@@ -1,6 +1,9 @@
 /**
  * choose certain function implementations based on the enviroment
  */
+
+// This is local development version of the code, hence due to some oddities imports of AWS adapters had to be commented out.
+// Needless to say they are actually being imported in production
 // import RDSGetDrizzle from "./aws/RDSGetDrizzle.js";
 // import SSMGetParam from "./aws/SSMGetParam.js";
 // import S3UpdateAvatar from "./aws/S3UpdateAvatar.js";
