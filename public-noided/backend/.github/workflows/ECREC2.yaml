@@ -1,0 +1,50 @@
+name: Push Docker Image to ECR
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{secrets.ROLE}}
+          aws-region: ${{secrets.REGION}}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+  
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5 #
+        with:
+          context: . 
+          push: true
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{secrets.REPO}}:latest
+
+      - name: Deploy to EC2
+        run: |
+          aws ssm send-command \
+            --instance-ids "${{ secrets.EC2_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --parameters commands="
+              aws ecr get-login-password --region ${{secrets.REGION}} | docker login --username AWS --password-stdin ${{ steps.login-ecr.outputs.registry }};
+              docker stop ${{secrets.CONTAINER}} || true;
+              docker rm ${{secrets.CONTAINER}} || true;
+              docker rmi ${{ steps.login-ecr.outputs.registry }}/${{secrets.REPO}}:latest || true;
+              docker pull ${{ steps.login-ecr.outputs.registry }}/${{secrets.REPO}}:latest;
+              docker run -d -p 443:443 --name ${{secrets.CONTAINER}} -e NODE_ENV=production -v /etc/cloudflare:/etc/cloudflare:ro --restart unless-stopped --log-driver json-file --log-opt max-size=5m --log-opt max-file=10 ${{ steps.login-ecr.outputs.registry }}/${{secrets.REPO}}:latest
+            " \
+            --query "Command.CommandId" \
+            --output text

@@ -1,0 +1,64 @@
+.UserMenu{
+
+    background-color: var(--back0);
+
+    font-size: 1em;
+
+    width: fit-content;
+    min-width: 10em;
+    max-width: 30em;
+
+
+    border-right: 2px solid var(--back1);
+    
+    /* border-block: 1px solid var(--back1); */
+    .MenuItem{
+        padding-left: 1.5em;
+        padding-top: 0.25em;
+
+        padding-right: 2em;
+        padding-block: 0.2em;
+ 
+        border-top: 2px solid var(--back1);
+    }
+
+    .userBox{
+
+        display: flex;
+        align-items: center;
+
+        padding-left: 0.5em;
+        /* border-block: 1px solid var(--back1); */
+        .username{ 
+
+            font-family: var(--miamifont);
+            font-size: 1.5em;
+            letter-spacing: -0.1em;
+            font-weight: 400;
+        
+            padding-left: 0.25em;
+            padding-right: 0.5em;
+
+            animation-name: LoggedMiami;
+            animation-duration: 4s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        img{
+            width: 2.5em;
+            height: 2.5em;
+
+            filter: drop-shadow(2px 2px var(--iconprim));
+            
+            animation-name: aniavatar;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+    }
+
+    .MenuItem{
+        padding-left: 1.5em;
+    }
+}

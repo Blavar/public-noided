@@ -1,0 +1,36 @@
+.FormField{
+    height: fit-content;
+
+    display: grid;
+    grid-template-columns: min-content auto;
+
+    text-align: left;
+    align-items: center;
+
+
+    .Icon{
+        display: block;
+        font-size: 2em;
+        margin-right: 0.2em;
+    }
+
+    .input{
+        color: var(--text);
+        background-color: var(--back1);
+        display: block;
+        font-size: 1em;
+
+        padding: none;
+        outline: none;
+        border: none;
+    }
+    
+    .error{
+        color: var(--red);
+        display:block;
+
+        font-size: 0.75em;
+        font-size: 0.75em;
+        margin-top: -0.25em;
+    }
+}

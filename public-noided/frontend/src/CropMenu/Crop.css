@@ -1,0 +1,44 @@
+@keyframes errorshake{
+
+    0%{
+        color: var(--error);
+        outline-color: var(--error);
+    }
+    25%{
+        color: var(--error);
+        outline-color: var(--error);
+        translate: -0.1rem 0rem;
+    }
+    50%{
+        color: var(--error);
+        outline-color: var(--error);
+        translate: 0rem 0rem;
+    }
+    75%{
+        color: var(--error);
+        outline-color: var(--error);
+        translate: 0.1rem 0rem;
+    }
+    100%{
+        color: var(--error);
+        outline-color: var(--error);
+        translate: 0rem 0rem;
+    }
+
+
+}
+
+
+.Crop{
+
+    background-color: #000000;
+
+    .mouse-inside-box{
+        cursor: grab;
+
+    }
+    .mouse-grabbing{
+        cursor: grabbing;
+    }
+
+}

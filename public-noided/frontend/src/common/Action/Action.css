@@ -1,0 +1,19 @@
+.gridBox{
+    height: fit-content;
+    display: grid;
+    grid-template-columns: min-content auto;
+
+    text-align: left;
+    align-items: center;
+
+    .Button{
+        display: block;
+        margin-right: 0.5em;
+    }
+    .actionerror{
+        height: 1.25em;
+        font-size: 0.75em;
+        color: var(--red);
+        margin-top: -0.25em;
+    }
+}

@@ -1,0 +1,20 @@
+.Header{
+
+    display: flex;
+    background-color: var(--back0);
+
+    .UserMenu{
+        z-index: 1;
+    }
+
+    .LogoBox{
+        position: absolute;
+        display: flex;
+        width: 100%;
+        
+        justify-content: center;
+
+
+        z-index: 0;
+    }
+}

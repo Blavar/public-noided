@@ -1,0 +1,38 @@
+{
+    "template": {
+        "meta": {
+            "name": "_type",
+            "category": "Routine",
+            "statusCode": 400,
+            "message": "",
+            "uiFeedback": ""
+        },
+        "context": {}
+    },
+    "Routine": null,
+    "Client": null,
+    "Form": null,
+    "Resource": null,
+    "Ownership": null,
+    "Auth": {
+        "meta": {
+            "statusCode": 401
+        }
+    },
+    "Authorization": null,
+    "Internal": {
+        "meta": {
+            "name": "",
+            "category": "InternalError",
+            "statusCode": 500
+        },
+        "context": {}
+    },
+    "AWS": {
+        "meta": {
+            "category": "InternalError",
+            "statusCode": 500
+        }
+    }
+
+}

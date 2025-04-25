@@ -1,0 +1,68 @@
+
+.ThreadBox{
+
+    width: 100vw;
+    display: flex;
+
+    justify-content: center;
+
+    padding-bottom: 10em;
+
+    .Thread{
+
+        width: 60em;
+
+        .titleBox{
+
+            min-width: 40em;
+            display: block;
+
+            background-color: var(--back0);
+            text-align: right;
+
+            padding: 0.5em;
+            border-bottom-left-radius: 3px;
+            padding-left: 1em;
+            margin-bottom: 1em;
+
+            .title{
+                color: var(--prim2);
+                display:block;
+                align-items: center;
+                font-size: 2.5em;
+                font-family: var(--miamifont);
+                /* font-family: "Jersey 15", sans-serif; */
+
+                margin-right: 1.25em;
+                /* animation-name: miamititle;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear; */
+
+            }
+        }
+
+        .Post{
+            margin-block: 0.5rem;
+        }
+
+        .replies{
+            /* min-width: fit-content;
+            max-width: fit-content; */
+            .inputarea{
+                max-width: 100%;
+            }
+        }
+
+        .addButton{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+
+            margin-top: 2em;
+            .Button{
+                font-size: 1.5em;
+            }
+        }
+    }   
+}

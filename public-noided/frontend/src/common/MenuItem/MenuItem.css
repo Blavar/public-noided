@@ -1,0 +1,109 @@
+@keyframes IconFlick {
+    
+
+    0%{
+        color: var(--back0);
+        text-shadow: 2px 1px var(--pink1);
+    }
+    50%{
+        color: var(--iconprim);
+        text-shadow:none;
+    }
+    100%{
+        color: var(--back0);
+        text-shadow: 2px 1px var(--pink1);
+    }
+
+}
+
+@keyframes MenuItemFlick {
+    
+    0%{
+        background-color: var(--prim1);
+        color: var(--back0);
+
+    }
+    50%{
+        background-color: var(--back0);
+        color: var(--text);
+    }
+    100%{
+        background-color: var(--prim1);
+        color: var(--back0);
+
+    }
+}
+
+
+@keyframes miamititle{
+
+    0%{
+        translate: 0px 0px;
+        text-shadow: 0px 0px var(--pink0);
+  
+    }
+    50%{
+        translate: -1px -1px;
+        text-shadow: 1px 1px var(--pink0);
+    }
+    100%{
+        translate: 0px 0px;
+        text-shadow: 0px 0px var(--pink0);
+  
+    }
+  
+}
+
+
+
+.MenuItem{
+
+    display: flex;
+    align-items: center;
+
+    /* border-block: 0.5px solid var(--text); */
+    cursor: pointer;
+
+    .Icon{
+        font-size: 1.5em;
+    }
+    .title{
+        padding-left: 0.5em;
+    }
+    
+}
+
+.MenuItem:hover{
+    animation-name: MenuItemFlick;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(1, end);
+
+    .Icon{
+        animation-name: IconFlick;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: steps(1, end);
+    }
+
+    .title{
+        animation-name: miamititle;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}
+
+.MenuItem:active{
+
+    background-color: var(--back2);
+
+    animation: none;
+    .title{
+        color: var(--iconprim);
+        animation: none;
+    }
+    .Icon{
+        animation:none;
+    }
+}

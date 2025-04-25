@@ -1,0 +1,8 @@
+.Icon{
+    color: var(--iconprim);
+
+    user-select: none;
+}
+.Icon:hover{
+    user-select: none;
+}

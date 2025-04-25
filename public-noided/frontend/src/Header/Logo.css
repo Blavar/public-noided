@@ -1,0 +1,51 @@
+@keyframes miamilogo{
+
+    0%{
+        translate: -0px 0px;
+        rotate: 0deg;
+    }
+    33%{
+        translate: -10px 5px;
+        rotate: -2deg;
+    }
+    66%{
+        translate: 10px -5px;
+        rotate: 2deg;
+    }
+    100%{
+        translate: 0px 0px;
+    }
+
+    0%{
+        text-shadow: 3px 3px var(--pink1);
+    }
+    50%{
+        text-shadow: -3px 3px var(--iconprim);
+    }
+    100%{
+        text-shadow: 3px 3px var(--pink1);
+    }
+}
+
+
+.Logo{
+
+    display: flex;
+
+    font-family: "Finlandica", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+
+    .letter{
+        font-size: 5em;
+        color: var(--text);
+    
+        text-shadow: 3px 3px var(--pink1);
+        
+        animation-name: miamilogo;
+        animation-duration: 120s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+}

@@ -1,0 +1,54 @@
+@keyframes miamimessage{
+
+    0%{
+        text-shadow: 1px 1px #f98dc9;
+        translate: 0px 0px;
+    }
+    50%{
+        text-shadow: 4px 4px #f98dc9;
+        translate: -4px -4px;
+    }
+    100%{
+        text-shadow: 1px 1px #f98dc9;
+        translate: 0px 0px;
+    }
+
+    0%{
+        transform: rotate(-3deg);
+    }
+    50%{
+        transform: rotate(3deg);
+    }
+    100%{
+        transform: rotate(-3deg);
+    }
+}
+
+
+
+
+.ErrorPage{
+
+    width: 100vw;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10em;
+
+    .detailsBox{
+        text-justify: center;
+
+        .message{
+
+            font-size: 4em;
+            font-family: var(--miamifont);
+        }
+        animation-name: miamimessage;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+}

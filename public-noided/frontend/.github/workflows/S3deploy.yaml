@@ -1,0 +1,38 @@
+name: React App Deployment to S3
+
+on:
+  push:
+    branches:
+      - master # Or your main development branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # To request a JWT
+      contents: read    # To checkout the repository
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.ROLE }}
+        aws-region: ${{ secrets.REGION }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build React app
+      run: npm run build
+
+    - name: Deploy to S3
+      run: |
+        aws s3 sync ./dist s3://${{ secrets.BUCKET }}

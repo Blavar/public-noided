@@ -1,0 +1,67 @@
+
+@keyframes miamired{
+    
+    0%{
+        transform: rotate(-1deg);
+        color: var(--red);
+        translate: 0px 0px;
+        box-shadow: -10px 5px var(--invipink);
+        text-shadow: -10px -10px var(--invipink);
+    }
+    25%{
+        transform: rotate(1deg);
+        color: var(--icon-color);
+
+        box-shadow: 20px -5px var(--invipink);
+    }
+    50%{
+        transform: rotate(-1deg);
+        color: var(--red);
+        translate: 0px 0px;
+        box-shadow: -10px -10px var(--invipink);
+    }
+    75%{
+        transform: rotate(1deg);
+        color: var(--icon-color);
+
+        box-shadow: 20px 10px var(--invipink);
+    }
+    100%{
+        transform: rotate(-1deg);
+        color: var(--red);
+        translate: 0px 0px;
+        box-shadow: -10px 5px var(--invipink);
+    }
+}
+
+
+
+
+@keyframes aniavatar{
+    0%{
+
+    }
+    50%{
+
+    }
+    100%{
+
+    }
+}
+
+.OverlayMenu{
+
+    .Button{
+        font-size: 2em;
+        
+        position: fixed;
+        top: 10vh;
+        right:10vh;
+
+        animation-name: miamired;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+
+    }
+}

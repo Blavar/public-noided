@@ -1,0 +1,46 @@
+
+.AuthMenu,
+.UserMenu{
+
+    width: fit-content;
+    font-size: 2em;
+
+    .row{
+
+
+        height: 1.5em;
+        background-color: var(--back0);
+
+        display:flex;
+        align-items: center;
+
+        padding-inline-end: 1em;
+
+        margin-block: 0.5em;
+
+        cursor:default;
+
+        .label{
+            margin-left: 0.5em;
+        }
+
+        .username{ 
+    
+            font-family: var(--miamifont);
+            font-size: 1.75em;
+            letter-spacing: -0.2em;
+            font-weight: 400;
+        
+            animation-name: miami;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+
+        img{
+            width: 2em;
+            height: 2em;
+        }
+
+    }
+}

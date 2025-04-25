@@ -1,0 +1,17 @@
+.AdminPanel{
+
+    position: absolute;
+    top:0;
+    right:0;
+
+    .AvatarBox{
+        .Avatar{
+            img{
+                width: 5em;
+                height: 5em;
+                outline: 2px solid var(--prim3);
+            }    
+        }
+    }
+    z-index: 1001;
+}

@@ -1,0 +1,11 @@
+.UserMenu{
+    font-size: 3em;
+    .row{
+
+    
+        img{
+            width: 2em;
+            height: 2em;
+        }
+    }
+}

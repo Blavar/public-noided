@@ -1,0 +1,25 @@
+.Overlay{
+
+    .UserFormMenu{
+
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        margin-top: 15vh;
+
+        .Button{
+            .delete{
+                
+                position: fixed;
+
+    
+            /* animation-name: miamired;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out; */
+            }
+        }
+    }
+
+
+}

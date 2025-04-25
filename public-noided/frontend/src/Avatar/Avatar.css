@@ -1,0 +1,21 @@
+@keyframes aniavatar{
+    0%{
+        transform: rotate(-2deg);
+    }
+    50%{
+        transform: rotate(2deg);
+    }
+    100%{
+        transform: rotate(-2deg);
+    }
+}
+
+.Avatar{
+
+    img{
+        border: 2px solid var(--outline);
+
+
+
+    }
+}

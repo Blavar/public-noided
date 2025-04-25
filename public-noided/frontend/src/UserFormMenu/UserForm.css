@@ -1,0 +1,45 @@
+.UserForm{
+
+    max-width: 30em;
+    min-width: 18em;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--back0);
+
+    text-align: center;
+    font-size: 2rem;
+
+    padding: 1rem;
+    padding-bottom: 1.5em;
+    padding-inline: 1em;;
+    border: 4px double var(--back1);
+    border-radius: 5px;
+
+    .title{
+        margin-bottom: 1em;
+    }
+    .FormField{
+        /* .Icon{
+            color: var(--orange);
+        } */
+    }
+
+    .turnstile{
+        margin-top: 1em;
+
+        height: 60px;
+    }
+
+    .Action{
+        font-size: 1em;
+        margin-left: 0.25em;
+        margin-top:2em;
+    }
+}
+
+
+
+

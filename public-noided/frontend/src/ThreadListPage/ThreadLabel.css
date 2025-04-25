@@ -1,0 +1,87 @@
+
+
+@keyframes miamititle{
+
+    0%{
+        translate: 0px 0px;
+        text-shadow: 0px 0px var(--pink0);
+  
+    }
+    50%{
+        translate: -2px -2px;
+        text-shadow: 2px 2px var(--pink0);
+    }
+    100%{
+        translate: 0px 0px;
+        text-shadow: 0px 0px var(--pink0);
+  
+    }
+  
+}
+
+
+.ThreadLabel{
+
+    display: flex;
+    font-family: var(--miamifont);
+
+    .Avatar{
+
+        img{
+            width: 3em;
+            height: 3em;
+            border: 2px solid;
+            border-right: none;
+            border-color: var(--iconprim);
+
+            animation: none;
+            filter: none;
+        }
+    }
+
+    .titleBox{
+
+        min-width: 40em;
+
+        display: block;
+        background-color: var(--back0);
+        padding: 0.5em;
+        border-bottom-left-radius: 3px;
+        padding-left: 1em;
+
+        border-left: 2px solid var(--iconprim);
+
+        .title{
+
+            display:block;
+            align-items: center;
+            font-size: 2em;
+
+            animation-name: miamititle;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+
+        }
+    }
+    .titleBox:hover{
+        cursor: pointer;
+        
+        animation-name: titleflick;
+
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function:steps(1)
+    }
+}
+
+.ThreadLabel.NEW{
+
+    .Avatar{
+        visibility: hidden;
+    }
+
+    .titleBox{
+        border:none;
+    }
+}
