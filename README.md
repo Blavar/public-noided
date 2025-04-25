@@ -99,12 +99,12 @@ Notable parts:
 
 
 
-##CI/CD
+## CI/CD
 Two workflows with github actions were implemented. They take prepared IAM roles in order to streamline the whole process.
 * **Backend:** Takes the repo, dockerizes it, pushes the image to ECR, then deploys it to an EC2 instance with SSM and runs it.
 * **Frontend:** Takes the repo, builds it, pushes to S3 bucket.
 
-##AWS Infrastructure
+## AWS Infrastructure
 
 ECR: Used solely to store an image of the node-express backend.
 EC2: Holds the container running the backend. Has a Cloudflare origin certificate installed, which is mounted onto the image. Has an IAM role
@@ -116,7 +116,7 @@ SSM: Specifically parameter store is used for storing and retrieving configurati
 
 
 
-##SECURITY
+## SECURITY
 * **CORS** on the backend only allows for request form the frontend url
 * **Data limit** of 1MB imposed on received data
 * **Rate limiter** 
